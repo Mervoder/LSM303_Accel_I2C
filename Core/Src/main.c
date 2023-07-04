@@ -106,7 +106,7 @@ int main(void)
 
 Scan_I2C_Address();
 
- LSM303_Init(HighResolution , Scale_8g );
+ LSM303_Init(LowResolution , Scale_2g );
 
   /* USER CODE END 2 */
 

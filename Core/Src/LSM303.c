@@ -43,7 +43,7 @@ void LSM303_Init(Resolution resolutionBits , Scale G_scale)
 
 		break;
 
-		case NormalResolution: Shift = 2;
+		case NormalResolution: Shift = 6;
 
 		if(G_scale == Scale_16g) multipler =0.0469;
 			else if (G_scale == Scale_8g) multipler = 0.01563;
@@ -59,7 +59,7 @@ void LSM303_Init(Resolution resolutionBits , Scale G_scale)
 			HAL_Delay(10);
 		break;
 
-		case LowResolution: Shift =0;
+		case LowResolution: Shift =8;
 
 		if(G_scale == Scale_16g) multipler =0.18758;
 				else if (G_scale == Scale_8g) multipler = 0.06252;
@@ -110,7 +110,7 @@ void LSM303_Read_Accel()
 		HAL_I2C_Mem_Read(&hi2c1, LSM303_Read_Address_Ac, OUT_Z_H_A, 1, acHData, 1, 1000);
 
 		// 4 bit kaydırdık çünkü high resolution da 12 bit data var
-		z = ((int16_t)((acHData[0] << 8) | acLData[0]) ) >> Shift;
+		z = ((int16_t)((acHData[0] << 8) | acLData[0]) >> Shift );
 		z= (float)z*multipler;
 
 
